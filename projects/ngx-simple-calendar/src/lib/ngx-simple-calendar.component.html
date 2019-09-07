@@ -1,0 +1,51 @@
+<div class="ngx-calendar__top-bar">
+  <ng-container *ngIf="topBarTemplate">
+    <ng-container *ngTemplateOutlet="topBarTemplate; context: activeMonth"></ng-container>
+  </ng-container>
+  <ng-container *ngIf="!topBarTemplate">
+    <div class="ngx-calendar__top-bar-icon" (click)="setPreviousMonth()">
+      <
+    </div>
+    <span class="ngx-calendar__title">{{currentMonthYearText }}</span>
+    <div class="ngx-calendar__top-bar-icon" (click)="setNextMonth()">
+      >
+    </div>
+  </ng-container>
+
+</div>
+<div class="ngx-calendar__wrapper">
+  <div class="ngx-calendar__calendar">
+    <div class="ngx-calendar__days-of-week">
+
+      <div class="ngx-calendar__day-of-week"
+           *ngFor="let day of days">
+        <ng-container *ngIf="weekDaysTemplate">
+          <ng-container *ngTemplateOutlet="weekDaysTemplate; context: day"></ng-container>
+        </ng-container>
+        <ng-container *ngIf="!weekDaysTemplate">
+          {{day.name }}
+        </ng-container>
+      </div>
+
+    </div>
+    <div class="ngx-calendar__days-holder"
+         [style.align-content]="settings.evenDayDimensions ? 'baseline': 'initial' "
+         [class.ngx-calendar__days-holder--outline]="settings.outline">
+      <div class="ngx-calendar__day"
+           #dayHolder
+           *ngFor="let day of calendarData"
+           [style.height]="settings.evenDayDimensions ? dayCorrectedHeight : 'initial'"
+           [class.ngx-calendar__day--outline]="settings.outline"
+           [class.today]="day.today"
+           [class.not-current]="!day.activeMonth">
+        <div [style.display]="day.activeMonth ? 'none': 'block'" class="ngx-calendar__day--overlay"></div>
+        <div *ngIf="!dayTemplate" class="ngx-calendar__default-day">
+          <div class="ngx-calendar__day-number">{{day.number}}</div>
+        </div>
+        <ng-container *ngIf="dayTemplate">
+          <ng-container *ngTemplateOutlet="dayTemplate; context: day"></ng-container>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

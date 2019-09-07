@@ -1,0 +1,19 @@
+{
+  "name": "ngx-simple-calendar",
+  "version": "1.0.2",
+  "author": "Bozidar Vulicevic",
+  "keywords": [
+    "angular",
+    "calendar",
+    "scheduler",
+    "simple",
+    "typescript",
+    "component",
+    "lightweight"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "^8.2.4",
+    "@angular/core": "^8.2.4"
+  }
+}

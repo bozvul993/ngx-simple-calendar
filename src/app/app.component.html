@@ -1,0 +1,29 @@
+<div class="container">
+  <ngx-simple-calendar></ngx-simple-calendar>
+</div>
+
+<div class="container">
+  <ngx-simple-calendar [options]="options1"></ngx-simple-calendar>
+</div>
+
+<div class="container">
+
+  <ngx-simple-calendar [options]="options2" [events]="events">
+    <ng-template #day
+                 let-date="number"
+                 let-events="events"
+                 let-active="today"
+                 let-weekend="weekend">
+      <div class="round-date"
+           [class.active]="active"
+           [class.weekend]="weekend">
+        <span>{{date}}</span>
+        <div class="events">
+          <div class="event" [style.background-color]="event.data.color" *ngFor="let event of events" [title]="event.data.name + event.data.description"></div>
+        </div>
+      </div>
+    </ng-template>
+  </ngx-simple-calendar>
+
+</div>
+<button (click)="addDate()">Update events</button>
